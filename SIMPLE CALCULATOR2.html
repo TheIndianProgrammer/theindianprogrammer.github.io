@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML Calculator</title>
+
+    <!-- For styling -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        table {
+            border: 1px solid black;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="button"] {
+            width: 60px;
+            height: 60px;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        input[type="text"] {
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            border: 2px solid black;
+            width: 390px;
+            margin: 5px;
+            box-sizing: border-box;
+        }
+
+        .number {
+            background-color: white;
+            color: black;
+        }
+
+        .operator {
+            background-color: black;
+            color: white;
+        }
+
+        .clear {
+            background-color: red;
+            color: white;
+            width: calc(100% - 22px);
+            height: 60px;
+        }
+
+        .function {
+            background-color: darkblue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Create table -->
+    <table id="calcu">
+        <tr>
+            <td colspan="5">
+                <input type="text" id="result" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" class="number" onclick="appendNumber('1')"></td>
+            <td><input type="button" value="2" class="number" onclick="appendNumber('2')"></td>
+            <td><input type="button" value="3" class="number" onclick="appendNumber('3')"></td>
+            <td><input type="button" value="/" class="operator" onclick="appendOperator('/')"></td>
+            <td><input type="button" value="π" class="function" onclick="appendPi()"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" class="number" onclick="appendNumber('4')"></td>
+            <td><input type="button" value="5" class="number" onclick="appendNumber('5')"></td>
+            <td><input type="button" value="6" class="number" onclick="appendNumber('6')"></td>
+            <td><input type="button" value="*" class="operator" onclick="appendOperator('*')"></td>
+            <td><input type="button" value="√" class="function" onclick="calculateSqrt()"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" class="number" onclick="appendNumber('7')"></td>
+            <td><input type="button" value="8" class="number" onclick="appendNumber('8')"></td>
+            <td><input type="button" value="9" class="number" onclick="appendNumber('9')"></td>
+            <td><input type="button" value="-" class="operator" onclick="appendOperator('-')"></td>
+            <td><input type="button" value="x²" class="function" onclick="calculateSquare()"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="0" class="number" onclick="appendNumber('0')"></td>
+            <td><input type="button" value="." class="number" onclick="appendDot()"></td>
+            <td><input type="button" value="=" class="operator" onclick="calculate()"></td>
+            <td><input type="button" value="+" class="operator" onclick="appendOperator('+')"></td>
+            <td><input type="button" value="C" class="clear" onclick="clearResult()"></td>
+        </tr>
+    </table>
+
+    <script>
+        function appendNumber(number) {
+            document.getElementById("result").value += number;
+        }
+
+        function appendOperator(operator) {
+            document.getElementById("result").value += operator;
+        }
+
+        function appendDot() {
+            document.getElementById("result").value += '.';
+        }
+
+        function clearResult() {
+            document.getElementById("result").value = '';
+        }
+
+        function calculate() {
+            try {
+                document.getElementById("result").value = eval(document.getElementById("result").value);
+            } catch (e) {
+                document.getElementById("result").value = 'Error';
+            }
+        }
+
+        function calculateSqrt() {
+            let result = document.getElementById("result").value;
+            if (result) {
+                document.getElementById("result").value = Math.sqrt(eval(result));
+            }
+        }
+
+        function calculateSquare() {
+            let result = document.getElementById("result").value;
+            if (result) {
+                document.getElementById("result").value = Math.pow(eval(result), 2);
+            }
+        }
+
+        function appendPi() {
+            document.getElementById("result").value += '3.14';
+        }
+    </script>
+</body>
+
+</html>
