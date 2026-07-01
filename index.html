@@ -3,22 +3,30 @@
 <html>
 <head>
 <style>
-  .map-wrapper {
-    width: 90%;
-    height: 500px;
-    margin: auto;
-    overflow: hidden;
-    border-radius: 15px;
-    position: relative;
+  body {
+    margin: 0;
+    background: #0f172a;
   }
+
+.map-wrapper {
+width: 90%;
+height: 500px;
+margin: 40px auto;
+overflow: hidden;
+border-radius: 15px;
+position: relative;
+}
 
 .map-wrapper iframe {
 width: 100%;
-height: 600px; /* bigger than container */
+height: 100%;
 border: 0;
-position: absolute;
-top: -100px; /* pushes header out of view */
-left: 0;
+
+```
+/* MAGIC PART */
+transform: translateY(-60px); /* only hide top bar */
+```
+
 } </style>
 
 </head>
